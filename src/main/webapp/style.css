@@ -1,130 +1,221 @@
-/* JobApp main stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-* { box-sizing: border-box; }
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --surface: #ffffff;
+    --bg: #f8fafc;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.07),
+    0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
-    color: #222;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    line-height: 1.5;
 }
 
+/* Page Layout */
 .container {
-    width: min(1100px, 92%);
-    margin: 50px auto;
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
 }
 
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.hero h1 {
-    margin-bottom: 10px;
-    font-size: 42px;
-}
-
-.hero p, .subtitle {
-    color: #666;
-    font-size: 17px;
-}
-
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.center { justify-content: center; }
-
-.btn {
-    display: inline-block;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 7px;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.btn:hover { opacity: 0.9; }
-.btn.secondary { background: #555; }
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-}
-
-.form-card {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-form { margin-top: 25px; }
-
-label {
-    display: block;
-    margin: 18px 0 7px;
-    font-weight: bold;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-    font-family: inherit;
-}
-
-textarea { resize: vertical; }
-
-form .btn { margin-top: 22px; }
-
-.success-card {
-    text-align: center;
-    max-width: 700px;
-    margin: 100px auto;
-}
-
+/* Header & Navigation */
 .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.page-header .actions { margin-top: 0; }
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
 
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+/* Buttons */
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.center {
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border-color: var(--border);
+}
+
+.btn.secondary:hover {
+    background-color: #f1f5f9;
+}
+
+/* Cards & Grid for viewalljobs.jsp */
 .job-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
 }
 
-.job-card { margin-bottom: 0; }
-.job-card h2 { margin-top: 0; }
-.job-card p { line-height: 1.6; }
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
 
-.empty-card {
+.job-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.job-card h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+}
+
+.job-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+}
+
+.job-card p strong {
+    color: var(--text-main);
+}
+
+/* Form Styles for addjob.jsp */
+.form-card {
+    max-width: 620px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+}
+
+form {
+    margin-top: 1.5rem;
+}
+
+label {
+    display: block;
+    margin: 1.25rem 0 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    background-color: #fff;
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+form .btn {
+    margin-top: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Empty State & Success Card */
+.empty-card,
+.success-card {
     text-align: center;
-    padding: 50px 20px;
+    max-width: 580px;
+    margin: 3rem auto;
+    padding: 3rem 2rem;
 }
 
-@media (max-width: 700px) {
-    .hero h1 { font-size: 32px; }
+.success-card h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+}
 
-    .page-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .container { margin-top: 25px; }
+.success-card p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
 }
